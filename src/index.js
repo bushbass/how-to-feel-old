@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import ReactDOM from "react-dom";
-import DatePicker from "react-datepicker";
-import "./styles.css";
+import ReactDOM from 'react-dom';
+import './styles.css';
 
 function calculateOldness(birthday) {
   const today = Date.now();
@@ -10,35 +9,31 @@ function calculateOldness(birthday) {
   const difference = today - myBirthday;
   const oldDate = new Date(myBirthday - difference).toLocaleDateString();
 
-  // console.log({ birthday });
-  // console.log({ "my birthday": Date.parse(myBirthday) });
-  // console.log({ today });
-  // console.log({ difference });
-  // console.log({ oldDate });
-
   return oldDate;
 }
 
-// const handleSubmit = birthday => {
-//   calculateOldness(birthday);
-// };
-
 const OldDateDiv = ({ input }) => {
   return (
-    <div className="returned-age">
-      Your birthday is as close to today as it is to {input}
+    <div className='returned-age'>
+      <h3>Your birthday is as close to today as it is to {input}</h3>
+
+      <h3>
+        <a href={`https://www.infoplease.com/year/${input.slice(-4)}`}>
+          Top news stories from {input.slice(-4)}
+        </a>
+      </h3>
     </div>
   );
 };
 
 const FeelingOld = () => {
-  const [birthday, setBirthday] = useState("");
-  const [calculatedOldDate, setCalculatedOldDate] = useState("");
+  const [birthday, setBirthday] = useState('');
+  const [calculatedOldDate, setCalculatedOldDate] = useState('');
   const [oldDateIsVisible, setOldDateIsVisible] = useState(false);
 
   return (
-    <div className="App">
-      <div className="flex-item">
+    <div className='App'>
+      <div className='flex-item'>
         <h1>How to feel old</h1>
         <h2>Just enter your birthday in the form</h2>
         <form
@@ -51,24 +46,22 @@ const FeelingOld = () => {
           <input
             onChange={event => setBirthday(event.target.value)}
             value={birthday}
-            placeholder="Enter age"
-            type="text"
+            placeholder='Enter age'
+            type='text'
           />
           <button>Feel old!!!</button>
           <p>Use mm/dd/yyyy format</p>
         </form>
 
-        {/* <div className="returned-age">
-        Your birthday is halfway between today and {calculatedOldDate}
-      </div> */}
         {oldDateIsVisible ? <OldDateDiv input={calculatedOldDate} /> : null}
       </div>
+
       <footer>
-        Made by <a href="https://bushbass.github.io/">Alex Nielsen</a>
+        Made by <a href='https://bushbass.github.io/'>Alex Nielsen</a>
       </footer>
     </div>
   );
 };
 
-const rootElement = document.getElementById("root");
+const rootElement = document.getElementById('root');
 ReactDOM.render(<FeelingOld />, rootElement);
