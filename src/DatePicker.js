@@ -7,11 +7,26 @@ import 'react-datepicker/dist/react-datepicker.css';
 // import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
 function MyDatePicker() {
-  const [startDate, setStartDate] = useState(new Date());
-  const handleChange = date => {
-    setStartDate({ startDate: date });
+  const onDateChange = date => {
+    setStartDate(date);
+    console.log(startDate);
   };
-  return <DatePicker selected={startDate} onChange={handleChange} />;
+  const [startDate, setStartDate] = useState(new Date());
+
+  return (
+    <div>
+      <DatePicker
+        selected={startDate}
+        onChange={onDateChange}
+        showYearDropdown
+        dateFormatCalendar="MMMM"
+        yearDropdownItemNumber={100}
+        scrollableYearDropdown
+      />
+
+      <button onClick={() => alert(startDate)}>Enter Birthdate</button>
+    </div>
+  );
 }
 
 export default MyDatePicker;
